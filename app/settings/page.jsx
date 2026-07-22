@@ -8,48 +8,47 @@ import { AppShell } from "@/components/layout/AppShell";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { LoadingState } from "@/components/feedback/LoadingState";
 import { Card, CardContent } from "@/components/ui/card";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { useMoney } from "@/hooks/useMoney";
-
-const SETTINGS_ITEMS = [
-  {
-    href: "/settings/allocations",
-    title: "Money added",
-    description: "Past entries and splits",
-    icon: PlusCircle,
-  },
-  {
-    href: "/settings/balances",
-    title: "Balances",
-    description: "All categories",
-    icon: Wallet,
-  },
-];
 
 export default function SettingsPage() {
   const {
     isLoading,
     accounts,
     primaryAccountId,
-    updateSettings,
-    isSaving,
     syncEnabled,
     lockApp,
   } = useMoney();
 
-  const accountItems = useMemo(() => {
-    const items = {};
-    for (const account of accounts) {
-      items[account.id] = account.name;
-    }
-    return items;
-  }, [accounts]);
+  const primaryAccountName = useMemo(() => {
+    return (
+      accounts.find((account) => account.id === primaryAccountId)?.name ||
+      "Choose account"
+    );
+  }, [accounts, primaryAccountId]);
+
+  const settingsItems = useMemo(
+    () => [
+      {
+        href: "/settings/home-account",
+        title: "Home account",
+        description: primaryAccountName,
+        icon: Home,
+      },
+      {
+        href: "/settings/allocations",
+        title: "Money added",
+        description: "Past entries and splits",
+        icon: PlusCircle,
+      },
+      {
+        href: "/settings/balances",
+        title: "Balances",
+        description: "All categories",
+        icon: Wallet,
+      },
+    ],
+    [primaryAccountName]
+  );
 
   if (isLoading) {
     return (
@@ -64,47 +63,6 @@ export default function SettingsPage() {
       <PageHeader title="Settings" />
 
       <div className="space-y-4">
-        <Card className="rounded-[1.5rem] border-border/80 shadow-soft">
-          <CardContent className="flex flex-col gap-4 p-4">
-            <div className="flex items-center gap-3">
-              <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-muted text-foreground">
-                <Home className="size-5" aria-hidden />
-              </div>
-              <div>
-                <p className="text-sm font-semibold text-foreground">
-                  Home account
-                </p>
-                <p className="text-xs text-muted-foreground">
-                  Big number on home
-                </p>
-              </div>
-            </div>
-            <Select
-              value={primaryAccountId}
-              items={accountItems}
-              disabled={isSaving}
-              onValueChange={(value) => {
-                if (value) updateSettings({ primaryAccountId: value });
-              }}
-            >
-              <SelectTrigger
-                id="primary-account"
-                aria-label="Home account"
-                className="min-h-11 w-full rounded-2xl"
-              >
-                <SelectValue placeholder="Choose account" />
-              </SelectTrigger>
-              <SelectContent>
-                {accounts.map((account) => (
-                  <SelectItem key={account.id} value={account.id}>
-                    {account.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </CardContent>
-        </Card>
-
         {syncEnabled ? (
           <Card className="rounded-[1.5rem] border-border/80 shadow-soft">
             <CardContent className="flex items-center justify-between gap-4 p-4">
@@ -133,7 +91,7 @@ export default function SettingsPage() {
 
         <div className="overflow-hidden rounded-[1.5rem] border border-border/80 bg-card shadow-soft">
           <ul className="divide-y divide-border/70">
-            {SETTINGS_ITEMS.map((item) => {
+            {settingsItems.map((item) => {
               const Icon = item.icon;
               return (
                 <li key={item.href}>
