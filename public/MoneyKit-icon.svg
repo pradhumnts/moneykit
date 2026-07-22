@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="207 189 842 842" role="img" aria-labelledby="title desc">
+  <title id="title">MoneyKit app icon</title>
+  <desc id="desc">A rounded forest-green money kit with three organized compartments, a lime accent pocket, and an integrated rupee symbol.</desc>
+
+  <rect width="1254" height="1254" fill="#FFFFFF"/>
+
+  <!-- Main kit body and side walls -->
+  <path fill="#062D1A" d="M348 381c-25 0-45 20-45 45v451c0 56 45 101 101 101h448c56 0 101-45 101-101V426c0-25-20-45-45-45H348Z"/>
+
+  <!-- Upper compartment -->
+  <path fill="#062D1A" d="M433 241h390c33 0 60 27 60 60v40c-13-5-27-8-42-8H415c-15 0-28 3-41 8v-40c0-33 26-60 59-60Z"/>
+
+  <!-- Lime middle compartment -->
+  <path fill="#C1F07F" stroke="#FFFFFF" stroke-width="20" stroke-linejoin="round" d="M405 349h445c34 0 61 27 61 61v54c-17-9-36-14-56-14H400c-20 0-39 5-56 14v-54c0-34 27-61 61-61Z"/>
+
+  <!-- Front pocket -->
+  <path fill="#062D1A" stroke="#FFFFFF" stroke-width="22" stroke-linejoin="round" d="M395 463h466c40 0 73 33 73 73 0 32-26 52-58 52H380c-32 0-58-20-58-52 0-40 33-73 73-73Z"/>
+
+  <!-- Integrated latch / negative-space transition -->
+  <path fill="#FFFFFF" d="M541 576h174l-17 47H558l-17-47Z"/>
+
+  <!-- Rupee mark -->
+  <path fill="#FFFFFF" d="M575 639h118v19l-61 15c-8 2-10 9-4 16l66 73h-39l-80-56v-67Z"/>
+</svg>

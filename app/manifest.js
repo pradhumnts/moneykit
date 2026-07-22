@@ -1,0 +1,51 @@
+import {
+  APP_DESCRIPTION,
+  APP_ICON_192,
+  APP_ICON_512,
+  APP_ICON_SVG,
+  APP_NAME,
+  APP_SHORT_NAME,
+  BACKGROUND_COLOR,
+  THEME_COLOR,
+} from "@/constants/branding";
+
+export default function manifest() {
+  return {
+    name: APP_NAME,
+    short_name: APP_SHORT_NAME,
+    description: APP_DESCRIPTION,
+    start_url: "/",
+    scope: "/",
+    display: "standalone",
+    orientation: "portrait",
+    background_color: BACKGROUND_COLOR,
+    theme_color: THEME_COLOR,
+    categories: ["finance", "productivity"],
+    icons: [
+      {
+        src: APP_ICON_SVG,
+        sizes: "any",
+        type: "image/svg+xml",
+        purpose: "any",
+      },
+      {
+        src: APP_ICON_192,
+        sizes: "192x192",
+        type: "image/png",
+        purpose: "any",
+      },
+      {
+        src: APP_ICON_512,
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "any",
+      },
+      {
+        src: APP_ICON_512,
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "maskable",
+      },
+    ],
+  };
+}

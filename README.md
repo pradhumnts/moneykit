@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# MoneyKit
 
-## Getting Started
+A mobile-first household money allocation and expense-tracking app for a husband and wife. Built with Next.js (App Router), JavaScript, Tailwind CSS, and shadcn/ui. All data stays in the browser via a repository-backed localStorage layer.
 
-First, run the development server:
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## What it does
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Enter newly received money
+2. Split it by fixed rules (Dharma, social ideas, daily expense top-ups, family, savings)
+3. Track seven category balances
+4. Record expenses mainly from daily and family accounts
+5. Review chronological activity
+6. Adjust balances when real cash/bank amounts differ
 
-## Learn More
+## Architecture
 
-To learn more about Next.js, take a look at the following resources:
+- **Presentation** — pages, forms, shadcn/ui components
+- **Application** — `MoneyProvider`, services, validation orchestration
+- **Domain** — pure allocation/money math (integer paise)
+- **Data** — async repository interface with a localStorage implementation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Money is stored as integer paise. UI never talks to localStorage directly.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Verify allocation math
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+node scripts/verify-allocation.mjs
+```
