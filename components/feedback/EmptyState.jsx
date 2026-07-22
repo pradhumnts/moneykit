@@ -25,7 +25,7 @@ export function EmptyState({
   const IconComponent = ICONS[icon];
 
   return (
-    <div className="flex flex-col items-center rounded-[1.75rem] border border-dashed border-border bg-card px-6 py-14 text-center shadow-soft">
+    <div className="flex flex-col items-center rounded-[1.75rem] border border-dashed border-border bg-card px-6 py-14 text-center shadow-soft animate-page-enter">
       <div className="mb-5 flex size-16 items-center justify-center rounded-full bg-muted text-foreground">
         {IconComponent ? (
           createElement(IconComponent, {

@@ -33,7 +33,7 @@ export function MobileNavigation() {
                 <Link
                   href={link.href}
                   className={cn(
-                    "flex min-h-12 flex-col items-center justify-center gap-0.5 rounded-[1.25rem] px-2 text-[11px] font-semibold transition-all",
+                    "pressable flex min-h-12 flex-col items-center justify-center gap-0.5 rounded-[1.25rem] px-2 text-[11px] font-semibold",
                     active
                       ? "bg-primary text-primary-foreground shadow-sm"
                       : "text-muted-foreground hover:bg-muted hover:text-foreground"

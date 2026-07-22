@@ -28,7 +28,7 @@ export function PinUnlockScreen({ onUnlock }) {
 
   return (
     <div className="flex min-h-dvh flex-col items-center justify-center px-6 py-10">
-      <div className="w-full max-w-sm space-y-8">
+      <div className="animate-page-enter w-full max-w-sm space-y-8">
         <div className="flex flex-col items-center gap-4 text-center">
           <Image
             src={APP_LOGO_WEBP}

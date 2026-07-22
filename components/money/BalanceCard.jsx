@@ -11,7 +11,7 @@ export function BalanceCard({ account, onAddExpense }) {
   if (!account) return null;
 
   return (
-    <section className="overflow-hidden rounded-[1.75rem] border border-border bg-card p-5 shadow-soft sm:p-6">
+    <section className="animate-page-enter overflow-hidden rounded-[1.75rem] border border-border bg-card p-5 shadow-soft sm:p-6">
       <div className="min-w-0">
         <div className="mb-2 flex items-center gap-2 text-sm font-medium text-muted-foreground">
           <AccountAvatar

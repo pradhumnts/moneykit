@@ -67,7 +67,7 @@ export default function AllocationsSettingsPage() {
         />
       ) : (
         <div className="overflow-hidden rounded-[1.5rem] border border-border/80 bg-card shadow-soft">
-          <ul className="divide-y divide-border/70">
+          <ul className="divide-y divide-border/70 stagger-children">
             {sortedAllocations.map((allocation) => {
               const dateLabel = formatDisplayDate(allocation.transactionDate);
               const timeLabel = formatDateInTimezone(

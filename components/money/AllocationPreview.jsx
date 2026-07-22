@@ -73,7 +73,7 @@ export function AllocationPreview({
         </Alert>
       ) : null}
 
-      <div className="space-y-3">
+      <div className="space-y-3 stagger-children">
         {ROWS.map((row) => {
           const adding = preview.breakdown[row.key] || 0;
           const current = currentBalances[row.key] || 0;

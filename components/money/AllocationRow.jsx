@@ -19,7 +19,7 @@ export function AllocationRow({
   const addLabel = isTopUp ? "Top-up" : "Adding";
 
   return (
-    <article className="rounded-[1.35rem] border border-border/80 bg-card p-4 shadow-soft">
+    <article className="rounded-[1.35rem] border border-border/80 bg-card p-4 shadow-soft transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5">
       <div className="flex items-start gap-3">
         <AccountAvatar accountId={accountId} className="size-11" iconClassName="size-5" />
 

@@ -22,7 +22,7 @@ export function FilterChips({ options, value, onChange, className }) {
             aria-selected={selected}
             onClick={() => onChange(option.value)}
             className={cn(
-              "min-h-10 shrink-0 rounded-full border px-4 text-sm font-semibold transition-all",
+              "pressable min-h-10 shrink-0 rounded-full border px-4 text-sm font-semibold",
               selected
                 ? "border-primary bg-primary text-primary-foreground shadow-soft"
                 : "border-border bg-card text-muted-foreground hover:bg-muted hover:text-foreground"

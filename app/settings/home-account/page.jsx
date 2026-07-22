@@ -53,7 +53,7 @@ export default function HomeAccountSettingsPage() {
       />
 
       <div className="overflow-hidden rounded-[1.5rem] border border-border/80 bg-card shadow-soft">
-        <ul className="divide-y divide-border/70">
+        <ul className="divide-y divide-border/70 stagger-children">
           {accounts.map((account) => {
             const selected = account.id === primaryAccountId;
             return (

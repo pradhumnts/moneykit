@@ -12,7 +12,7 @@ export function BottomActionBar({
 }) {
   if (sticky) {
     return (
-      <div className="fixed inset-x-0 bottom-0 z-20 border-t border-border/60 bg-background px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:px-6">
+      <div className="fixed inset-x-0 bottom-0 z-20 animate-slide-up border-t border-border/60 bg-background px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:px-6">
         <div
           className={cn(
             "mx-auto flex w-full max-w-5xl flex-col gap-2.5 sm:flex-row",

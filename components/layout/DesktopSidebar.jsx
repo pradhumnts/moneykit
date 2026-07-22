@@ -56,7 +56,7 @@ export function DesktopSidebar() {
               key={link.href}
               href={link.href}
               className={cn(
-                "flex min-h-12 items-center gap-3 rounded-2xl px-3.5 text-sm font-semibold transition-all",
+                "pressable flex min-h-12 items-center gap-3 rounded-2xl px-3.5 text-sm font-semibold",
                 active
                   ? "bg-primary text-primary-foreground shadow-soft"
                   : "text-muted-foreground hover:bg-muted hover:text-foreground"

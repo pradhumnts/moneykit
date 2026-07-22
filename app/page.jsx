@@ -95,7 +95,7 @@ export default function HomePage() {
               </Link>
             </div>
             <div className="rounded-[1.5rem] border border-border/80 bg-card px-4 shadow-soft">
-              <div className="divide-y divide-border/70">
+              <div className="divide-y divide-border/70 stagger-children">
                 {recent.map((transaction) => (
                   <TransactionItem
                     key={transaction.id}

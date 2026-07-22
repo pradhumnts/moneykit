@@ -33,7 +33,7 @@ export function AllocationHistoryBreakdown({ items = [] }) {
   );
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-3 stagger-children">
       {HISTORY_ROWS.map((row) => {
         const meta = ACCOUNT_META[row.accountId];
         const adding = amountsByAccountId[row.accountId] || 0;

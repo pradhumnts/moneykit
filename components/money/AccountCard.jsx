@@ -9,7 +9,7 @@ export function AccountCard({ account }) {
   const meta = ACCOUNT_META[account.id];
 
   return (
-    <article className="flex h-full flex-col rounded-[1.5rem] border border-border/80 bg-card p-4 shadow-soft transition-transform hover:-translate-y-0.5">
+    <article className="lift flex h-full flex-col rounded-[1.5rem] border border-border/80 bg-card p-4 shadow-soft">
       <div className="flex items-start gap-3">
         <AccountAvatar accountId={account.id} className="size-11" iconClassName="size-5" />
         <div className="min-w-0 flex-1">

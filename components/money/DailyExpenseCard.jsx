@@ -25,7 +25,7 @@ export function DailyExpenseCard({ account }) {
   );
 
   return (
-    <article className="rounded-[1.5rem] border border-border/80 bg-card p-4 shadow-soft sm:p-5">
+    <article className="lift rounded-[1.5rem] border border-border/80 bg-card p-4 shadow-soft sm:p-5">
       <div className="flex items-start gap-3">
         <AccountAvatar accountId={account.id} className="size-11" iconClassName="size-5" />
         <div>

@@ -15,8 +15,8 @@ export function StepIndicator({ steps, currentStep }) {
             <div className="flex shrink-0 flex-col items-center gap-1">
               <div
                 className={cn(
-                  "flex size-8 items-center justify-center rounded-full text-xs font-bold",
-                  active && "bg-primary text-primary-foreground shadow-soft",
+                  "flex size-8 items-center justify-center rounded-full text-xs font-bold transition-all duration-300",
+                  active && "bg-primary text-primary-foreground shadow-soft scale-105",
                   complete && "bg-lime text-lime-foreground",
                   !active && !complete && "bg-muted text-muted-foreground"
                 )}
@@ -37,7 +37,7 @@ export function StepIndicator({ steps, currentStep }) {
             {!isLast ? (
               <div
                 className={cn(
-                  "mx-2 h-1 min-w-0 flex-1 rounded-full",
+                  "mx-2 h-1 min-w-0 flex-1 rounded-full transition-colors duration-300",
                   complete ? "bg-primary/30" : "bg-border"
                 )}
                 aria-hidden

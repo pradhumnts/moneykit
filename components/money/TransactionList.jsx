@@ -29,7 +29,7 @@ export function TransactionList({
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 stagger-children">
       {groups.map((group) => (
         <section key={group.label} className="space-y-1">
           <h3 className="px-0.5 pb-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
