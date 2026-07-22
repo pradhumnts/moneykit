@@ -7,6 +7,7 @@ export function TransactionList({
   transactions,
   accountsById,
   showBalanceAfter = false,
+  showAccountName = true,
   emptyMessage = "No activity yet.",
 }) {
   if (!transactions.length) {
@@ -45,6 +46,7 @@ export function TransactionList({
                     accountsById[transaction.accountId]?.name || "Account"
                   }
                   showBalanceAfter={showBalanceAfter}
+                  showAccountName={showAccountName}
                 />
               ))}
             </div>

@@ -232,7 +232,7 @@ export default function AddMoneyPage() {
 
       {step === 2 && preview ? (
         <div className="space-y-5 pb-[calc(5.5rem+env(safe-area-inset-bottom))]">
-          <Card className="overflow-hidden rounded-[1.75rem] border border-border bg-card shadow-soft">
+          <Card className="overflow-hidden rounded-[1.75rem] border border-border bg-card py-0 shadow-soft">
             <CardContent className="space-y-2 p-5 sm:p-6">
               <p className="text-sm font-medium text-muted-foreground">
                 Received

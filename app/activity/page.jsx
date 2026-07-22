@@ -106,7 +106,7 @@ export default function ActivityPage() {
         <TransactionList
           transactions={filtered}
           accountsById={accountsById}
-          showBalanceAfter
+          showAccountName={false}
         />
       )}
     </AppShell>

@@ -5,13 +5,26 @@ import { TransactionAvatar } from "@/components/money/AccountIcon";
 import { formatDateInTimezone } from "@/lib/utils/dates";
 import { cn } from "@/lib/utils";
 
+function getDisplayTitle(title) {
+  if (!title) return "";
+  return String(title).replace(/\s+allocation$/i, "");
+}
+
 export function TransactionItem({
   transaction,
   accountName,
   showBalanceAfter = false,
+  showAccountName = true,
   compact = false,
 }) {
   const isCredit = transaction.direction === "credit";
+  const title = getDisplayTitle(transaction.title);
+  const timeLabel = !compact
+    ? formatDateInTimezone(transaction.createdAt, "time")
+    : "";
+  const secondary = showAccountName
+    ? [accountName, timeLabel].filter(Boolean).join(" · ")
+    : timeLabel;
 
   return (
     <article className="flex items-center gap-3.5 py-3.5">
@@ -27,17 +40,13 @@ export function TransactionItem({
         <div className="flex items-start justify-between gap-3">
           <div className="min-w-0">
             <p className="truncate text-[15px] font-semibold tracking-tight text-foreground">
-              {transaction.title}
+              {title}
             </p>
-            <p className="mt-0.5 truncate text-sm text-muted-foreground">
-              {accountName}
-              {!compact ? (
-                <>
-                  {" · "}
-                  {formatDateInTimezone(transaction.createdAt, "time")}
-                </>
-              ) : null}
-            </p>
+            {secondary ? (
+              <p className="mt-0.5 truncate text-sm text-muted-foreground">
+                {secondary}
+              </p>
+            ) : null}
             {showBalanceAfter ? (
               <p className="mt-0.5 text-xs text-muted-foreground">
                 Balance{" "}
