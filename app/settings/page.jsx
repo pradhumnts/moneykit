@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import Link from "next/link";
-import { ChevronRight, Home, Lock, Wallet } from "lucide-react";
+import { ChevronRight, Home, Lock, PlusCircle, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AppShell } from "@/components/layout/AppShell";
 import { PageHeader } from "@/components/layout/PageHeader";
@@ -18,6 +18,12 @@ import {
 import { useMoney } from "@/hooks/useMoney";
 
 const SETTINGS_ITEMS = [
+  {
+    href: "/settings/allocations",
+    title: "Money added",
+    description: "Past entries and splits",
+    icon: PlusCircle,
+  },
   {
     href: "/settings/balances",
     title: "Balances",
