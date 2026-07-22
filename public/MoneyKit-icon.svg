@@ -5,7 +5,7 @@
 
   <rect width="1024" height="1024" fill="#FFFFFF"/>
 
-  <g transform="translate(512 512) scale(0.64) translate(-618.5 -609.5)">
+  <g transform="translate(512 512) scale(0.82) translate(-618.5 -609.5)">
     <!-- Main kit body and side walls -->
     <path fill="#062D1A" d="M348 381c-25 0-45 20-45 45v451c0 56 45 101 101 101h448c56 0 101-45 101-101V426c0-25-20-45-45-45H348Z"/>
 

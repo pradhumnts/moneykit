@@ -8,7 +8,7 @@ const svgPath = join(root, "public/MoneyKit-icon.svg");
 const svg = await readFile(svgPath);
 
 // Extra inset so home-screen icons keep comfortable white margins.
-const PADDING_RATIO = 0.08;
+const PADDING_RATIO = 0.04;
 
 const outputs = [
   { path: join(root, "public/icon-192.png"), size: 192 },
