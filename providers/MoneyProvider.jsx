@@ -40,6 +40,8 @@ export function MoneyProvider({
   const [expenseCategories, setExpenseCategories] = useState([]);
   const [settings, setSettings] = useState(null);
   const [isSaving, setIsSaving] = useState(false);
+  const [lastSyncError, setLastSyncError] = useState(null);
+  const [lastSyncedAt, setLastSyncedAt] = useState(null);
   const savingLock = useRef(false);
 
   const setters = useMemo(
@@ -56,6 +58,15 @@ export function MoneyProvider({
     []
   );
 
+  const refreshSyncMeta = useCallback(async () => {
+    if (repository.getLastSyncError) {
+      setLastSyncError(await repository.getLastSyncError());
+    }
+    if (repository.getLastSyncedAt) {
+      setLastSyncedAt(await repository.getLastSyncedAt());
+    }
+  }, [repository]);
+
   const refreshData = useCallback(async () => {
     const state = await repository.getState();
     applyState(setters, state);
@@ -63,8 +74,9 @@ export function MoneyProvider({
       const message = await repository.getRecoveryMessage();
       setRecoveryMessage(message);
     }
+    await refreshSyncMeta();
     return state;
-  }, [repository, setters]);
+  }, [repository, setters, refreshSyncMeta]);
 
   useEffect(() => {
     let active = true;
@@ -79,6 +91,17 @@ export function MoneyProvider({
           const message = await repository.getRecoveryMessage();
           if (active) setRecoveryMessage(message);
         }
+        if (repository.getLastSyncError) {
+          const syncError = await repository.getLastSyncError();
+          if (active) {
+            setLastSyncError(syncError);
+            if (syncError) toast.warning(syncError);
+          }
+        }
+        if (repository.getLastSyncedAt) {
+          const syncedAt = await repository.getLastSyncedAt();
+          if (active) setLastSyncedAt(syncedAt);
+        }
       } catch (err) {
         if (active) {
           setError(err?.message || "Could not load your money data.");
@@ -91,6 +114,24 @@ export function MoneyProvider({
       active = false;
     };
   }, [repository, setters]);
+
+  useEffect(() => {
+    if (!syncEnabled || !repository.refreshFromCloud) return undefined;
+
+    const onVisible = () => {
+      if (document.visibilityState !== "visible") return;
+      repository
+        .refreshFromCloud()
+        .then((state) => {
+          applyState(setters, state);
+          return refreshSyncMeta();
+        })
+        .catch(() => {});
+    };
+
+    document.addEventListener("visibilitychange", onVisible);
+    return () => document.removeEventListener("visibilitychange", onVisible);
+  }, [syncEnabled, repository, setters, refreshSyncMeta]);
 
   const getAccountById = useCallback(
     (accountId) => accounts.find((account) => account.id === accountId) || null,
@@ -240,6 +281,27 @@ export function MoneyProvider({
     [repository, setters, withSaveLock]
   );
 
+  const syncNow = useCallback(async () => {
+    if (!repository.refreshFromCloud) {
+      toast.message("Cloud sync is not available on this device.");
+      return null;
+    }
+    return withSaveLock(async () => {
+      const state = await repository.refreshFromCloud();
+      applyState(setters, state);
+      await refreshSyncMeta();
+      const syncError = repository.getLastSyncError
+        ? await repository.getLastSyncError()
+        : null;
+      if (syncError) {
+        toast.warning(syncError);
+      } else {
+        toast.success("Synced with cloud");
+      }
+      return state;
+    });
+  }, [repository, setters, withSaveLock, refreshSyncMeta]);
+
   const dismissRecoveryMessage = useCallback(async () => {
     setRecoveryMessage(null);
     if (repository.clearRecoveryMessage) {
@@ -280,6 +342,9 @@ export function MoneyProvider({
       resetLocalData,
       updateSettings,
       syncEnabled,
+      syncNow,
+      lastSyncError,
+      lastSyncedAt,
       lockApp,
       accountIds: ACCOUNT_IDS,
     }),
@@ -312,6 +377,9 @@ export function MoneyProvider({
       resetLocalData,
       updateSettings,
       syncEnabled,
+      syncNow,
+      lastSyncError,
+      lastSyncedAt,
       lockApp,
     ]
   );
