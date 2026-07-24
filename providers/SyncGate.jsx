@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { LoadingState } from "@/components/feedback/LoadingState";
 import { PinUnlockScreen } from "@/components/sync/PinUnlockScreen";
-import { createCloudSyncRepository } from "@/lib/repositories/cloudSyncRepository";
+import { createCloudDbRepository } from "@/lib/repositories/cloudDbRepository";
 import { localStorageFinanceRepository } from "@/lib/repositories/localStorageFinanceRepository";
 import { clearStoredPin, getStoredPin, setStoredPin } from "@/lib/sync/pinStorage";
 import { getSyncStatus, unlockPin } from "@/lib/sync/syncClient";
@@ -51,7 +51,7 @@ export function SyncGate({ children }) {
 
   const repository = useMemo(() => {
     if (syncEnabled && pin) {
-      return createCloudSyncRepository(pin);
+      return createCloudDbRepository(pin);
     }
     return localStorageFinanceRepository;
   }, [syncEnabled, pin]);
